@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebShop</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" lang="bs" >
+<title>Insert title here</title>
+</head>
+<body>
+
+<main>
+	<div class="language">
+		<span th:text="#{lang.change}"></span>:
+			<select class="select-css" id="locales">
+			    <option value=""></option>
+			    <option value="en" th:text="#{lang.eng}"></option>
+			    <option value="bs" th:text="#{lang.bs}"></option>
+			</select></div>
+      <section class="casa">
+        <div class="left-sidebar">
+          <div class="user">
+          </div>
+          <div class="linkovi">
+            <div class="linkic">
+              <h2><i class="fas fa-home"></i> <a href="/user/home" th:text="#{home}"></a></h2>
+            </div>
+            <div class="linkic">
+              <h2><i class="fas fa-book"></i> <a href="/products" th:text="#{products}"></a></h2>
+            </div>
+          </div>
+        </div>
+        <div class="games">
+          <div class="status">
+            <h1 th:text="#{dashboard}"></h1>
+          </div>
+          <div class="karte" >
+              <div class="karta">
+              <div class="card-info">
+                <h2 th:text="${proizvod.name}"></h2><br>
+                Postavio: <p th:text="${proizvod.korisnik.username}"></p>
+                Autor <div style="display:flex;"><p th:text="${proizvod.ime_autora}"></p><span> &nbsp;</span> <p th:text="${proizvod.prezime_autora}" > </div> <br>
+                Cijena: <div style="display:flex;"><p th:text="${proizvod.cijena}"> <span> &nbsp; </span> <p th:text="BAM"></div> <br>
+                Dostupno: <p th:text="${proizvod.kolicina}"></p>
+                Žanr: <p th:text="${proizvod.kategorija.name}"></p>
+                Opis: <p th:text="${proizvod.opis}"></p>
+              </div>
+              <div class="dugmad">
+                <a  id="back" class="btn btn-secondary" th:text="#{back}"></a>
+                </div>
+            </div>
+            </div>
+          </div>
+      </section>
+    </main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+<script src="/js/app.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#locales").change(function () {
+        var selectedOption = $('#locales').val();
+        if (selectedOption != ''){
+            window.location.replace(window.location.pathname + '?lang=' + selectedOption);
+        }
+    });
+});
+</script>
+</body>
+</html>
+<!-- <table>
+<tr th:each="book: ${books}">
+    <td th:text="${book.id}" />
+    <td th:text="${book.name}" />
+    <td th:text="${book.izdavac}" />
+</tr>
+</table>
+ -->
